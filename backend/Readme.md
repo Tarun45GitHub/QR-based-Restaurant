@@ -1,0 +1,7 @@
+- 1.`npm init` - initlize node package manager
+- 2.download express- `npm install express`
+- 3.create a server file and complete get() and listen() function according to express.
+- 4.start server file also can use nodemon `npm i nodemon`.
+- 5.connect with front end
+- 6.install mongoose ,dotenv and complete data modeling part
+- 7.write app.get() for generating QR and serve it in server

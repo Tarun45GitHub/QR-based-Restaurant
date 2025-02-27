@@ -1,0 +1,3 @@
+- 1. `npm create vite@latest`
+- 2. `npm i axios`
+- 3. create components for display qr check it proper workin or not
