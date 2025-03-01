@@ -1,11 +1,14 @@
 import mongoose from "mongoose";
 
 const menuSchema= new mongoose.Schema({
-    name:String,
-    description:String,
-    imageURL:String,
-    price:Number,
-    NoOfStock:Number
+    name:{
+        type:String
+    },
+    description:{
+        type:String
+    }
+    // imageURL:String,
+    // price:Number,
+    // NoOfStock:Number
 });
-const menuItems=mongoose.model("menuItems",menuSchema);
-module.exports={menuItems};
+export const MenuItems=mongoose.model("MenuItems",menuSchema);
