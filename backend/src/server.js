@@ -2,9 +2,13 @@ import dotenv from "dotenv"
 import express from 'express'
 import connectDB from "./db/index.js"
 import QRcode from 'qrcode'
-import {MenuItems} from './models/menu.model.js'
+import { Menu } from "./db/menu.model.js"
 import bodyParser from "body-parser"
 import cors from 'cors'
+import {uploadOnCloudinary} from './fileUpload/cloudinary.js'
+import { upload } from "./fileUpload/multer.js"
+
+
 
 dotenv.config({path:"./env"})
 // console.log(process.env.PORT);
@@ -12,6 +16,7 @@ dotenv.config({path:"./env"})
 
 const app = express()
 const port = process.env.PORT||5000
+
 
 app.use(cors())
 app.use(bodyParser.json());
@@ -33,11 +38,21 @@ app.get('/api/qr/:tableId', (req, res) => {
     res.status(500).json({ Message: "Error Generating QR Code",error });
   }
 });
-
-app.post('/api/menu/create',async(req,res)=>{
- const {name,description}=req.body;
- const item=await MenuItems.create({name,description})
- const checkitems= await MenuItems.findById(item._id);
+app.post('/api/menu/create',upload.single('menuImage'),async(req,res)=>{
+ const {name,description,price}=req.body;
+//  const imageURL=req.file
+//  console.log(imageURL);
+ const result = await uploadOnCloudinary(req.file.path);
+//  console.log(result);
+ 
+ const item=await Menu.create(
+   {MenuName:name,
+    Descriptions:description,
+    MenuImage:result.url,
+    MenuPrice:price})
+ const checkitems= await Menu.findById(item._id);
+ console.log(checkitems);
+ 
  if(!checkitems) res.status(400).json("menu add reqest faild")
 else{
   res.status(200).json("menu added successfully")
@@ -45,7 +60,7 @@ else{
 });
 
 app.get("/api/menu/getDetails", async(req, res) => {
- const response= await MenuItems.find()
+ const response= await Menu.find()
  if(!response) {
   res.status(404).json("ERROR:while data fetching")
  }

@@ -11,6 +11,8 @@ function MenuPage() {
         const response= await axios.get('/api/menu/getDetails')
         if(!response) {console.log("ERROR:while fetching menu");
         }
+        console.log(response.data);
+        
         setMenu(response.data)
       } catch (error) {
         console.log("ERROR:while fetching menu",error);
@@ -26,9 +28,10 @@ function MenuPage() {
           menu.map((item, index) => {
             return (
               <div key={item._id + index} className="menu-item">
-                <h4>{item.name}</h4>
-                <p>{item.description}</p>
-                {/* <img src={item.imageURL} /> */}
+                <h4>{item.MenuName}</h4>
+                <img src={item.MenuImage} />
+                <p>{item.Descriptions}</p>
+                <h5>{item.MenuPrice}</h5>
                 <button>
                   Add to Cart
                 </button>

@@ -1,16 +1,17 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useParams } from 'react-router-dom'
 
 function QRcodeDisplay() {
+  const {tableId}=useParams();
     const [QRcodeURL,setQRcodeURL]=useState("")
-    const {tableId}=useParams()
+    // console.log(tableId);
     useEffect(()=>{
             axios.get(`/api/qr/${tableId}`)
             .then((res)=>{
             // console.log(res.data.qrCodeUrl);
             setQRcodeURL(res.data.qrCodeUrl)
-            console.log(QRcodeURL);
+            // console.log(QRcodeURL);
             
             })
            .catch((err)=>{
