@@ -7,7 +7,7 @@ import tailwindcss from 'tailwindcss'
 export default defineConfig({
   server:{
     proxy:{
-      "/api":"http://localhost:3000"
+      "/api":'https://qr-based-restaurant.vercel.app'
     }
   },
   plugins: [react(),
