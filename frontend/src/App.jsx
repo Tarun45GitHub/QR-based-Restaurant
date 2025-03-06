@@ -15,7 +15,7 @@ export default function App() {
       <Route path='/menu/:tableId' element={<MenuPage/>}/>
       <Route path='/menu/add' element={<AddMenu/>} />
       <Route path='/qr/:tableId' element={<QRcodeDisplay/>}/>
-      <Route path='/cart' element={<CartPage/>}/>
+      <Route path='/cart/:tableId' element={<CartPage/>}/>
     </Routes>
     </BrowserRouter>
   )

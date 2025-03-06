@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 
 app.get('/api/qr/:tableId', (req, res) => {
   const tableId=req.params.tableId;
-  const tableURL=`http://localhost:5173/menu/${tableId}`
+  const tableURL=`${process.env.FRONTEND_URL}/menu/${tableId}`
   try {
    QRcode.toDataURL(tableURL,(err,url)=>{
     if(err){

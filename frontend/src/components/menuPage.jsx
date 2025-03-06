@@ -29,13 +29,11 @@ function MenuPage() {
     }
     fetchmenu();
   },[])
-  const handleAddToItem = (event, item) => {
-    dispatch(addToCart({tableId,item}));
-  };
+  
   return (
-    
+    <>
+    <CartPage/>
     <div class='h-screen w-screen p-10'>
-      {/* <CartPage/> */}
       <h2 class="text-center text-5xl text-gray-500 ">FOOD MENU</h2>
      
       <div class=' flex justify-center items-center h-screen flex-wrap'>{menu &&
@@ -72,8 +70,10 @@ function MenuPage() {
                   </div>
                   <div class="flex items-center justify-between">
                       <span class="text-3xl font-bold text-gray-900 dark:text-white">RS.{item.MenuPrice}</span>
-                      <button onClick={(event) => handleAddToItem(event, item)}
-                       class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                      <button onClick={()=>dispatch(addToCart({tableId,item}))}
+                       class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
+                        focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600
+                         dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
                   </div>
               </div>
           </div>
@@ -83,6 +83,7 @@ function MenuPage() {
                     </div>
                     
               </div>
+              </>
   )
 }
 

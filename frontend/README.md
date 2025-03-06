@@ -1,3 +1,5 @@
 - 1. `npm create vite@latest`
 - 2. `npm i axios`
-- 3. create components for display qr check it proper workin or not
+- 3. create components for display qr check it proper workin or not 
+- 4. create AddMenu component to take menu details using react-hook-from
+- 5. create MenuPage componet 

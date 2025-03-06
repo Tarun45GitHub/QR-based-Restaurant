@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { nanoid } from "@reduxjs/toolkit";
 const initialState={
-    cart:[{id:1,menu_name:"hello",menu_price:100,quantity:1}]
+    carts:[{}]
 }
 
 export const cartSlice=createSlice({
@@ -8,35 +9,33 @@ export const cartSlice=createSlice({
     initialState,
     reducers:{
         addToCart:(state,action)=>{
-            const {tableId,addItem}=action.payload;
-            console.log(state.cart);
-            const item=state.cart.find((i)=>i.id===action.payload.item.id)
-            if(item){
-                item.quantity+=1;
-            }
-            else{
-                state.cart.push({addItem,quantity:1})
-            }
+            const {tableId,item}=action.payload;
+            // console.log(item);
+            
+           const Item=state.carts.find((i)=>(i.tableId==tableId && i.item.id==item.id))
+           if(Item){Item.quantity+=1}
+           else{
+            state.carts.push({...action.payload,quantity:1,id:Date.now()})
+           }
+            // console.log(state.carts);
         },
         incrementQuantity:(state,action)=>{
-            const {tableId,addItem}=action.payload; 
-            const item=state.cart[tableId].find((i)=>i.id===addItem.id)
-            if(item){
-                item.quantity+=1;
-            }
+            const {tableId,item}=action.payload; 
+            state.carts.find((i)=>{
+                if(i.id==item.id && i.tableId==tableId) i.quantity+=1;
+            })
+            // console.log(state.carts);
         },
         decrementQuantity:(state,action)=>{
-            const {tableId,addItem}=action.payload;
-            const item=state.cart[tableId].find((i)=>i.id===addItem.id)
-            if(item && item.quantity>1){
-                item.quantity-=1;
-            }
-            else{
-                state.cart[tableId]=state.cart[tableId].filter((i)=>i.id!==addItem.id)
-            }
+            const {tableId,item}=action.payload;
+            state.carts.find((i)=>{
+                if(i.tableId==tableId && i.id==item.id) i.quantity-=1;
+            })
+            // console.log((state.carts));    
         },
         removeFromCart:(state,action)=>{
-            state.cart[tableId]=state.cart[tableId].filter((i)=>i.id!==addItem.id)
+            const {tableId,item}=action.payload;
+            state.carts=state.carts.filter((i)=>(i.tableId==tableId &&i.id!==item.id))
         }
     }
 })

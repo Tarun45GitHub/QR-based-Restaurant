@@ -5,3 +5,5 @@
 - 5.connect with front end
 - 6.install mongoose ,dotenv and complete data modeling part
 - 7.write app.get() for generating QR and serve it in server
+- 8.complete app.post() for taking munu details and store file in cloudinary using multer store in data base
+- 9.another app.get() for fetching data from db and render to frontend
