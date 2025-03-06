@@ -68,8 +68,10 @@ app.get("/api/menu/getDetails", async(req, res) => {
   
 });
 
-app.get('/', (req, res) => {
+app.get('/home', (req, res) => {
+  console.log("hello");
   res.send('Hello World!')
+  
 })
 
 app.listen(port, () => {
