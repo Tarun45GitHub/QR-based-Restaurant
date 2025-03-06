@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import {useForm} from 'react-hook-form'
 
 
-function AddMenu() {
+function MenuAdd() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = async(data) => {
        const fromData= new FormData();
@@ -60,4 +60,4 @@ function AddMenu() {
   )
 }
 
-export default AddMenu
+export default MenuAdd;
