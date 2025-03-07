@@ -39,7 +39,8 @@ app.get('/api/qr/:tableId', (req, res) => {
   }
 });
 app.post('/api/menu/create',upload.single('menuImage'),async(req,res)=>{
- const {name,description,price}=req.body;
+ try {
+  const {name,description,price}=req.body;
 //  const imageURL=req.file
 //  console.log(imageURL);
  const result = await uploadOnCloudinary(req.file.path);
@@ -57,22 +58,30 @@ app.post('/api/menu/create',upload.single('menuImage'),async(req,res)=>{
 else{
   res.status(200).json("menu added successfully")
 }
+ } catch (error) {
+  console.error("Function Error:", error);
+  return new Response("Internal Server Error", { status: 500 });
+ }
 });
 
 app.get("/api/menu/getDetails", async(req, res) => {
- const response= await Menu.find()
+ try {
+  const response= await Menu.find()
  if(!response) {
   res.status(404).json("ERROR:while data fetching")
  }
  else res.send(response)
   
+ } catch (error) {
+  console.error("Function Error:", error);
+  return new Response("Internal Server Error", { status: 500 });
+ }
 });
 
 app.get('/', (req, res) => {
-  console.log("hello");
   res.send({"code":'Hello World!'})
   
-})
+});
 
 app.listen(port, () => {
   connectDB();
