@@ -1,12 +1,12 @@
 import dotenv from "dotenv"
 import express from 'express'
-import connectDB from "./db/index.js"
+import connectDB from "./src/db/index.js"
 import QRcode from 'qrcode'
-import { Menu } from "./db/menu.model.js"
+import { Menu } from "./src/db/menu.model.js"
 import bodyParser from "body-parser"
 import cors from 'cors'
-import {uploadOnCloudinary} from './fileUpload/cloudinary.js'
-import { upload } from "./fileUpload/multer.js"
+import {uploadOnCloudinary} from './src/fileUpload/cloudinary.js'
+import { upload } from "./src/fileUpload/multer.js"
 
 
 
