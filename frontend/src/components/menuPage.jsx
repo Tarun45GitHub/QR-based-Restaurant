@@ -6,6 +6,7 @@ import { addToCart } from '../reducer/cartSlice';
 import CartPage from './CartPage.jsx';
 
 
+
 function MenuPage() {
   const {tableId}=useParams();
   // console.log(tableId);
@@ -16,7 +17,7 @@ function MenuPage() {
   useEffect(()=>{
     const fetchmenu=async()=>{
       try {
-        const response= await axios.get('/api/menu/getDetails')
+        const response= await axios.get(`${import.meta.env.VITE_Backend_URL}/api/menu/getDetails`)
         if(!response) {console.log("ERROR:while fetching menu");
         }
         console.log(response.data);

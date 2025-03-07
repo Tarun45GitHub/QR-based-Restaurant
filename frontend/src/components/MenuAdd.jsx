@@ -1,6 +1,7 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React from 'react'
 import {useForm} from 'react-hook-form'
+
 
 
 function MenuAdd() {
@@ -13,7 +14,7 @@ function MenuAdd() {
        fromData.append('price',data.price);
 
        
-        axios.post('/api/menu/create',fromData)
+        axios.post(`${import.meta.env.VITE_Backend_URL}/api/menu/create`,fromData)
         .then((res)=>{
             // console.log(res.data);
             
