@@ -68,9 +68,9 @@ app.get("/api/menu/getDetails", async(req, res) => {
   
 });
 
-app.get('/home', (req, res) => {
+app.get('/', (req, res) => {
   console.log("hello");
-  res.send('Hello World!')
+  res.send({"code":'Hello World!'})
   
 })
 
